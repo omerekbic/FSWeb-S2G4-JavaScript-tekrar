@@ -42,17 +42,19 @@ function KareninAlani(kenaruzunlugu) {
 
 /* (Oto test yok) Yukarıdaki KareninAlani fonksiyonunu kenar uzunluğu = 10 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
-/* GÖREV 1:  
-- CemberinCevresi fonksiyonunu kullanarak aşağıdaki yönergeleri uygulayın:
-	1. CemberinCevresi fonksiyonu parametre olarak sadece çemberin yarıçapını alacaktır. 
-	2. Global değişken olarak verilmiş pi sayısı fonksiyon içinde kullanılacak (pi sayısı fonksiyonun parametresi olarak alınmayacaktır)
-	3. Çemberin çevresi hesaplanacaktır (💡 İPUCU: Çemberin çevresi = 2 * pi * yarıçap)
-	4. Hesaplanan çemberin çevresi döndürülecektir.
-*/
+//  GÖREV 1:
+// - CemberinCevresi fonksiyonunu kullanarak aşağıdaki yönergeleri uygulayın:
+// 	1. CemberinCevresi fonksiyonu parametre olarak sadece çemberin yarıçapını alacaktır.
+// 	2. Global değişken olarak verilmiş pi sayısı fonksiyon içinde kullanılacak (pi sayısı fonksiyonun parametresi olarak alınmayacaktır)
+// 	3. Çemberin çevresi hesaplanacaktır (💡 İPUCU: Çemberin çevresi = 2 * pi * yarıçap)
+// 	4. Hesaplanan çemberin çevresi döndürülecektir.
 
-function CemberinCevresi(/* kodlar buraya */) {
-  /* kodlar buraya */
+function CemberinCevresi(yaricap) {
+  const cevre = 2 * pi * yaricap;
+  return cevre;
 }
+let yaricap = 5;
+console.log(CemberinCevresi(yaricap));
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -64,9 +66,13 @@ function CemberinCevresi(/* kodlar buraya */) {
 	4. Hesaplanan çemberin alanı döndürülecektir.
 */
 
-function CemberinAlani(/* kodlar buraya */) {
-  /* kodlar buraya */
+function CemberinAlani(yaricap, pi) {
+  const alan = pi * Math.pow(yaricap, 2);
+  return alan;
 }
+
+let yaricap = 15;
+console.log(CemberinAlani(yaricap, pi));
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -97,29 +103,74 @@ let ucetambolunenler,
   siralisayilar,
   tekraredensayilar;
 
+const sayilar = [
+  12, 45, 45, 78, 101, 33, 333.5, 876, 12.3, 500, 999, 6, 888, 2.4, 45,
+];
+
+let ucetambolunenler,
+  enkucuk,
+  enbuyuk,
+  ucebolunenlerintoplami,
+  besyuzdenkucuksayilar,
+  siralisayilar,
+  tekraredensayilar;
+
 // 3a çözümü
+enbuyuk = sayilar[0];
+enkucuk = sayilar[0];
 
-/* kodlar buraya */
+for (let i = 1; i < sayilar.length; i++) {
+  if (sayilar[i] > enbuyuk) enbuyuk = sayilar[i];
+  if (sayilar[i] < enkucuk) enkucuk = sayilar[i];
+}
 
-// 3b çözümü:
+console.log("En büyük sayı:", enbuyuk);
+console.log("En küçük sayı:", enkucuk);
 
-/* kodlar buraya */
+// 3b çözümü
+ucetambolunenler = [];
+sayilar.forEach((num) => {
+  if (num % 3 === 0) {
+    ucetambolunenler.push(num);
+  }
+});
 
-// 3c çözümü:
+console.log("3'e tam bölünen sayılar:", ucetambolunenler);
 
-/* kodlar buraya */
+// 3c çözümü
+ucebolunenlerintoplami = ucetambolunenler.reduce((acc, num) => acc + num, 0);
+console.log("3'e tam bölünen sayıların toplamı:", ucebolunenlerintoplami);
 
 // 3d çözümü
-
-/* kodlar buraya */
+besyuzdenkucuksayilar = sayilar.filter((num) => num < 500);
+console.log("500'den küçük sayılar:", besyuzdenkucuksayilar);
 
 // 3e çözümü
-
-/* kodlar buraya */
+siralisayilar = besyuzdenkucuksayilar.sort((a, b) => a - b);
+console.log("Sıralı sayılar:", siralisayilar);
 
 // 3f çözümü
+let tekrarlar = {};
+sayilar.forEach((num) => {
+  if (tekrarlar[num]) {
+    tekrarlar[num]++;
+  } else {
+    tekrarlar[num] = 1;
+  }
+});
 
-/* kodlar buraya */
+tekraredensayilar = [];
+for (let num in tekrarlar) {
+  if (tekrarlar[num] > 1) {
+    tekraredensayilar.push(
+      `${num} sayısı ${tekrarlar[num]} kere tekrar edilmiştir`
+    );
+  }
+}
+
+console.log("Tekrar eden sayılar:", tekraredensayilar);
+
+console.log("Sayilar dizisindeki eleman sayısı:", sayilar.length);
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 
